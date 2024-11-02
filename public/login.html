@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - Gestion des Commerciaux</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Connexion</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required autocomplete="email">
+      
+      <!-- Conteneur du mot de passe avec icône -->
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Mot de passe" required autocomplete="current-password">
+        <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+      </div>
+
+      <button type="submit">Se connecter</button>
+    </form>
+    <p id="error-message" class="error-message"></p>
+
+    <h2>Inscription</h2>
+    <form id="signupForm">
+      <input type="email" id="emails" placeholder="Email" required autocomplete="email">
+      
+      <!-- Conteneur du mot de passe avec icône pour l'inscription -->
+      <div class="password-container">
+        <input type="password" id="passwords" placeholder="Mot de passe" required autocomplete="new-password">
+        <span class="toggle-password" onclick="togglePasswordVisibility('passwords')">👁️</span>
+      </div>
+
+      <select id="role" required>
+        <option value="commercial">Commercial</option>
+        <option value="responsable">Responsable</option>
+      </select>
+
+      <input type="text" id="societeId" placeholder="Identifiant de Société" required>
+
+      <button type="submit">S'inscrire</button>
+    </form>
+    <p id="signup-error-message" class="error-message"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/firebaseConfig.js"></script>
+  <script src="js/auth.js"></script>
+
+  <!-- Script de visibilité du mot de passe -->
+  <script>
+    function togglePasswordVisibility(inputId = 'password') {
+      const passwordField = document.getElementById(inputId);
+      passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tableau de Bord Commercial</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    /* Style pour afficher le titre en vert */
+    .dashboard-title {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Section pour afficher le nom du commercial avec style vert -->
+  <h1 id="commercialName" class="dashboard-title">Tableau de Bord Commercial</h1>
+  <!-- Section pour afficher l'ID de la société -->
+  <h2 id="societeIdDisplay" style="color: gray;">ID de Société : </h2> <!-- societeId sera affiché ici -->
+
+  <!-- Bouton pour se déconnecter -->
+  <button onclick="exitToHome()">Déconnexion</button>
+
+  <!-- Formulaire pour ajouter ou modifier un client -->
+  <h2 id="formTitle">Ajouter un Client</h2>
+  <form id="addClientForm" onsubmit="ajouterOuModifierClient(event)">
+    <input type="hidden" id="clientId"> <!-- Champ caché pour l'ID du client en cours de modification -->
+    <input type="text" id="clientName" placeholder="Nom du Client" required>
+    <input type="number" id="clientAmount" placeholder="Montant de l'Opération (MAD)" required>
+    <input type="text" id="orderNumber" placeholder="N° B COMMANDE/C" required>
+    <button type="submit" id="submitButton">Ajouter Client</button>
+  </form>
+
+  <!-- Sélecteurs de date pour filtrer les opérations par plage -->
+  <label for="startDate">De :</label>
+  <input type="date" id="startDate">
+  <label for="endDate">À :</label>
+  <input type="date" id="endDate">
+
+  <!-- Tableau pour les opérations des clients -->
+  <h2>Opérations des Clients</h2>
+  <table id="tableOperationsClients">
+    <thead>
+      <tr>
+        <th>Nom du Client</th>
+        <th>Montant de l'Opération (MAD)</th>
+        <th>N° B COMMANDE/R</th>
+        <th>Date de l'Opération</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <th colspan="1">Total</th>
+        <th id="totalAmount" class="total-amount" style="color: blue;">0 MAD</th>
+        <th colspan="3"></th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Charger Firebase SDK depuis le CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <!-- Charger la configuration Firebase et le script pour commercial -->
+  <script src="js/firebaseConfig.js"></script>
+  <script src="js/commercial.js"></script>
+  <script src="js/auth.js"></script> <!-- Contient la fonction exitToHome() -->
+</body>
+</html>
